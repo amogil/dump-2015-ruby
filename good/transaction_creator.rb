@@ -1,17 +1,12 @@
 module Demo
-  class TransactionCreator
-    def initialize(from, to)
-      @from = from
-      @to = to
-    end
-
-    def create(amount, comment)
-      t1 = Transaction.new(@from, -amount.to(@from.currency), comment)
-      t2 = Transaction.new(@to, amount.to(@to.currency), comment)
-      t1.assign_reference(t2)
-      t2.assign_reference(t1)
-      @from.add_transaction(t1)
-      @to.add_transaction(t2)
+  module TransactionCreator
+    def transfer_to(account, amount, comment)
+      t1 = Transaction.new self, -amount.to(currency), comment
+      t2 = Transaction.new account, amount.to(account.currency), comment
+      t1.assign_reference t2
+      t2.assign_reference t1
+      add_transaction t1
+      account.add_transaction t2
       [t1, t1]
     end
   end

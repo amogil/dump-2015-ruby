@@ -3,7 +3,7 @@ module Demo
     RATES = { Currency::DRAGONS => 1.0, Currency::STAGS => 8.1,
               Currency::GROATS => 121.4, Currency::PENNIES => 268.0 }
 
-    module Mix
+    module MixIn
       def to(currency)
         name = Currency.name_of currency
         send name.downcase
@@ -16,14 +16,13 @@ module Demo
         end
       end
     end
-
   end
 end
 
 class Float
-  include Demo::CurrencyConverter::Mix
+  include Demo::CurrencyConverter::MixIn
 end
 
 class Fixnum
-  include Demo::CurrencyConverter::Mix
+  include Demo::CurrencyConverter::MixIn
 end

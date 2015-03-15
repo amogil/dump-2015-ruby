@@ -1,5 +1,5 @@
 module Demo
-  class OwnersFactory
+  module OwnersFactory
     def create(title, castle, words, currency)
       initial_balance = Random.rand 0..10000
       account = Account.new currency, initial_balance

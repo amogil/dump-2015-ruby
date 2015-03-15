@@ -1,13 +1,13 @@
 require 'securerandom'
 
 require_relative 'balance_calculator'
+require_relative 'transaction_creator'
 require_relative 'account'
 require_relative 'currency'
 require_relative 'currency_converter'
-require_relative 'owner'
 require_relative 'owners_factory'
+require_relative 'owner'
 require_relative 'transaction'
-require_relative 'transaction_creator'
 
 module Demo
   def self.run
@@ -17,24 +17,16 @@ module Demo
 
   class Demo
     def show
-      owners_factory = OwnersFactory.new
-      starks = owners_factory.create "House Stark", "Winterfell", "Winter is Coming", Currency::STAGS
-      lannisters = owners_factory.create "House Lannister", "Casterly Rock", "Hear Me Roar!", Currency::DRAGONS
+      starks = Owner.create "House Stark", "Winterfell", "Winter is Coming", Currency::STAGS
+      lannisters = Owner.create "House Lannister", "Casterly Rock", "Hear Me Roar!", Currency::DRAGONS
 
       print_balance starks
       print_balance lannisters
 
-      ops starks, lannisters, 100.dragons
+      starks.account.transfer_to lannisters.account, 100.dragons, "Pwned by Lannisters"
 
       print_balance starks
       print_balance lannisters
-    end
-
-    def ops(starks, lannisters, amount)
-      transaction_creator = TransactionCreator.new starks.account, lannisters.account
-      transaction_creator.create amount, "Pwned by Lannisters"
-
-      puts "#{lannisters.title} has taken #{amount} #{} from #{starks.title}\n\n"
     end
 
     def print_balance(owner)
