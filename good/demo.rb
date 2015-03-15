@@ -24,6 +24,7 @@ module Demo
       print_balance lannisters
 
       starks.account.transfer_to lannisters.account, 100.dragons, "Pwned by Lannisters"
+      puts "#{lannisters.title} has taken #{100.dragons} from #{starks.title}\n\n"
 
       print_balance starks
       print_balance lannisters
