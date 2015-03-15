@@ -1,5 +1,14 @@
 require 'securerandom'
-Dir['*.rb'].each { |file| require_relative file }
+require_relative 'account'
+require_relative 'balance_calculator'
+require_relative 'balance_calculators_factory'
+require_relative 'currency'
+require_relative 'currency_converter'
+require_relative 'owner'
+require_relative 'owners_factory'
+require_relative 'transaction'
+require_relative 'transaction_creator'
+require_relative 'transaction_creators_factory'
 
 module Demo
   def self.run
@@ -38,13 +47,13 @@ module Demo
       transaction_creator = @transaction_creators_factory.create(starks.account, lannisters.account)
       transaction_creator.create(currency, amount, "Pwned by Lannisters")
 
-      puts("%s has taken %d %s from %s\n" % lannisters.title, amount, currency, starks.title)
+      puts("%s has taken %2.f %s from %s\n\n" % [lannisters.title, amount, Currency.name(currency), starks.title])
     end
 
     def print_balance(owner, balance_calculator)
       puts("----------- RECEIPT -----------")
-      puts("Customer: {0} ({1})" % owner.title, owner.words)
-      puts("Balance: {0} {1}" % balance_calculator.get_balance, balance_calculator.currency)
+      puts("Customer: %s (%s)" % [owner.title, owner.words])
+      puts("Balance: %2.f %s" % [balance_calculator.get_balance, Currency.name(balance_calculator.currency)])
       puts("-------------------------------")
       puts("")
     end

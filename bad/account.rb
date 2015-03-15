@@ -11,10 +11,10 @@ module Demo
 
     def add_transaction(transaction)
       if @transactions.any? { |t| t.id == transaction.id }
-        raise StandardError.new "Hodor?"
+        raise StandardError.new("Hodor?")
       end
       if transaction.account != self
-        raise StandardError.new "Hodor!"
+        raise StandardError.new("Hodor!")
       end
 
       @transactions.push(transaction)
