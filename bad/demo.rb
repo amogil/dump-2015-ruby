@@ -9,6 +9,8 @@ require_relative 'owners_factory'
 require_relative 'transaction'
 require_relative 'transaction_creator'
 require_relative 'transaction_creators_factory'
+require_relative 'balance_console_printer'
+require_relative 'transfer_console_printer'
 
 module Demo
   def self.run
@@ -16,15 +18,21 @@ module Demo
     balance_calculators_factory = BalanceCalculatorsFactory.new
     currency_converter = CurrencyConverter.new
     transaction_creators_factory = TransactionCreatorsFactory.new(currency_converter)
-    demo = Demo.new(owners_factory, balance_calculators_factory, transaction_creators_factory)
+    balance_console_printer = BalanceConsolePrinter.new
+    transfer_console_printer = TransferConsolePrinter.new
+    demo = Demo.new(owners_factory, balance_calculators_factory, transaction_creators_factory, balance_console_printer,
+                    transfer_console_printer)
     demo.show
   end
 
   class Demo
-    def initialize(owners_factory, balance_calculators_factory, transaction_creators_factory)
+    def initialize(owners_factory, balance_calculators_factory, transaction_creators_factory, balance_console_printer,
+                   transfer_console_printer)
       @owners_factory = owners_factory
       @balance_calculators_factory = balance_calculators_factory
       @transaction_creators_factory = transaction_creators_factory
+      @balance_console_printer = balance_console_printer
+      @transfer_console_printer = transfer_console_printer
     end
 
     def show
@@ -34,28 +42,20 @@ module Demo
       starks_balance_calculator = @balance_calculators_factory.create(starks.account)
       lannisters_balance_calculator = @balance_calculators_factory.create(lannisters.account)
 
-      print_balance(starks, starks_balance_calculator)
-      print_balance(lannisters, lannisters_balance_calculator)
+      @balance_console_printer.print(starks, starks_balance_calculator)
+      @balance_console_printer.print(lannisters, lannisters_balance_calculator)
 
-      ops(starks, lannisters, 100, Currency::DRAGONS)
+      transfer(starks, lannisters, 100, Currency::DRAGONS)
 
-      print_balance(starks, starks_balance_calculator)
-      print_balance(lannisters, lannisters_balance_calculator)
+      @balance_console_printer.print(starks, starks_balance_calculator)
+      @balance_console_printer.print(lannisters, lannisters_balance_calculator)
     end
 
-    def ops(starks, lannisters, amount, currency)
+    def transfer(starks, lannisters, amount, currency)
       transaction_creator = @transaction_creators_factory.create(starks.account, lannisters.account)
       transaction_creator.create(currency, amount, "Pwned by Lannisters")
 
-      puts("%s has taken %2.f %s from %s\n\n" % [lannisters.title, amount, Currency.name(currency), starks.title])
-    end
-
-    def print_balance(owner, balance_calculator)
-      puts("----------- RECEIPT -----------")
-      puts("Customer: %s (%s)" % [owner.title, owner.words])
-      puts("Balance: %2.f %s" % [balance_calculator.get_balance, Currency.name(balance_calculator.currency)])
-      puts("-------------------------------")
-      puts("")
+      @transfer_console_printer.print(starks, lannisters, amount, currency)
     end
   end
 end
