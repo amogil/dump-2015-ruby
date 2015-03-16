@@ -25,14 +25,14 @@ module Demo
       starks = Owner.create "House Stark", "Winterfell", "Winter is Coming", Currency::STAGS
       lannisters = Owner.create "House Lannister", "Casterly Rock", "Hear Me Roar!", Currency::DRAGONS
 
-      print_balance starks
-      print_balance lannisters
+      print_balance_for starks
+      print_balance_for lannisters
 
       starks.account.transfer_to lannisters.account, 100.dragons, "Pwned by Lannisters"
       print_transfer starks, lannisters, 100.dragons
 
-      print_balance starks
-      print_balance lannisters
+      print_balance_for starks
+      print_balance_for lannisters
     end
   end
 end
