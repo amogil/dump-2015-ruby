@@ -1,7 +1,7 @@
 module Demo
   module CurrencyConverter
-    RATES = { Currency::DRAGONS => 1.0, Currency::STAGS => 8.1,
-              Currency::GROATS => 121.4, Currency::PENNIES => 268.0 }
+    RATES = {Currency::DRAGONS => 1.0, Currency::STAGS => 8.1,
+             Currency::GROATS => 121.4, Currency::PENNIES => 268.0}
 
     module MixIn
       def to(currency)
