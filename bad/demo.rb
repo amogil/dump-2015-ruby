@@ -1,5 +1,5 @@
-require 'securerandom'
 require_relative 'account'
+require_relative 'money'
 require_relative 'balance_calculator'
 require_relative 'balance_calculators_factory'
 require_relative 'currency'
