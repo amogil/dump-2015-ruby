@@ -1,10 +1,10 @@
 module Demo
   class CurrencyConverter
     DRAGON_EXCHANGE_RATES = {
-        Currency::DRAGONS => 1.0,
-        Currency::STAGS => 8.1,
-        Currency::GROATS => 121.4,
-        Currency::PENNIES => 268.0}
+      Currency::DRAGONS => 1.0,
+      Currency::STAGS => 8.1,
+      Currency::GROATS => 121.4,
+      Currency::PENNIES => 268.0 }
 
     def convert(from, to, amount)
       from_rate = DRAGON_EXCHANGE_RATES[from]

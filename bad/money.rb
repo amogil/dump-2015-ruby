@@ -4,7 +4,7 @@ module Demo
 
     def initialize(amount, currency)
       @amount = amount
-      @currency = @currency
+      @currency = currency
     end
   end
 end

@@ -21,8 +21,8 @@ module Demo
     end
 
     def get_balance
-      amount = initial_balance + transactions.inject(0) { |sum, t| sum + t.amount }
-      return Money.new amount, currency
+      amount = initial_balance + transactions.sum { |t| t.amount }
+      return Money.new(amount, currency)
     end
   end
 end
