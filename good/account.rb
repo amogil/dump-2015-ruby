@@ -1,8 +1,5 @@
 module Demo
   class Account
-    include BalanceCalculator
-    include TransactionCreator
-
     attr_reader :id, :currency, :initial_balance, :transactions
 
     def initialize(currency, initial_balance)
@@ -12,12 +9,15 @@ module Demo
       @transactions = []
     end
 
-    protected
+    def balance
+      amount = initial_balance + transactions.sum(&:amount)
+      Money.new amount, currency
+    end
 
     def add_transaction(transaction)
       raise StandardError.new "Hodor?" if @transactions.any? { |t| t.id == transaction.id }
       raise StandardError.new "Hodor!" if transaction.account != self
-      @transactions.push(transaction)
+      @transactions.push transaction
     end
   end
 end

@@ -1,28 +1,17 @@
 module Demo
   module CurrencyConverter
-    RATES = {Currency::DRAGONS => 1.0, Currency::STAGS => 8.1,
-             Currency::GROATS => 121.4, Currency::PENNIES => 268.0}
+    RATES = {
+      dragons: 1.0,
+      stags: 8.1,
+      groats: 121.4,
+      pennies: 268.0
+    }
 
-    module MixIn
-      def to(currency)
-        name = Currency.name_of currency
-        send name.downcase
-      end
-
-      RATES.each do |const, rate|
-        name = Currency.name_of const
-        define_method name.downcase do
-          self * rate
-        end
-      end
+    def to(target_currency)
+      from_rate = RATES[currency]
+      to_rate = RATES[target_currency]
+      target_amount = to_rate * amount / from_rate
+      Money.new target_amount, target_currency
     end
   end
-end
-
-class Float
-  include Demo::CurrencyConverter::MixIn
-end
-
-class Fixnum
-  include Demo::CurrencyConverter::MixIn
 end

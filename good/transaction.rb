@@ -1,6 +1,9 @@
 module Demo
   class Transaction
+    include CurrencyConverter
+
     attr_reader :id, :account, :amount, :reference, :comment
+    delegate :currency, to: :account
 
     def initialize(account, amount, comment)
       @id = SecureRandom.uuid
