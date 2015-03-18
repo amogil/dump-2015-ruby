@@ -11,9 +11,5 @@ module Demo
       @amount = amount
       @account = account
     end
-
-    def assign_reference(transaction)
-      @reference = transaction
-    end
   end
 end

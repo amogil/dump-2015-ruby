@@ -11,7 +11,6 @@ module Demo
       t2 = Transaction.new(to, plus_amount, comment)
       from.add_transaction(t1)
       to.add_transaction(t2)
-      return [t1, t1]
     end
   end
 end
