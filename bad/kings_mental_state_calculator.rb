@@ -8,8 +8,8 @@ module Demo
     end
 
     def get_envy(owner)
-      balance_in_groats = @currency_converter.convert(owner.account.currency, Currency::GROATS,
-                                                      owner.account.get_balance.amount)
+      balance = owner.account.get_balance
+      balance_in_groats = @currency_converter.convert(balance.currency, Currency::GROATS, balance.amount)
       incomes_without_trash = owner.account.transactions.
         map { |t| @currency_converter.convert(owner.account.currency, Currency::GROATS, t.amount) }.
         select { |amount| amount > KINGS_ENVY_THRESHOLD_GROATS }
