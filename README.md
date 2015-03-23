@@ -1,3 +1,3 @@
 # dump-2015-ruby
 
-Осталось переделать печать выписки на консоль после того, как она будет поправлена в https://github.com/amogil/dump-2015-c-sharp
+Код на C# тут: https://github.com/amogil/dump-2015-c-sharp
