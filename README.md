@@ -1,6 +1,6 @@
 # dump-2015-ruby
 
-Код для доклада "Как сменить язык программирования и не притащить старые привычки в новый мир".
+Код для доклада "Как сменить язык программирования и не притащить старые привычки в новый мир" на http://dump-conf.ru
 
 
 Слайды: https://speakerdeck.com/amogil/kak-smienit-iazyk-proghrammirovaniia-i-nie-pritashchit-staryie-privychki-v-novyi-mir
