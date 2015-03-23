@@ -1,4 +1,9 @@
 # dump-2015-ruby
 
-Код для доклада "Как сменить язык программирования и не притащить старые привычки в новый мир"
-Код на C# тут: https://github.com/amogil/dump-2015-c-sharp
+Код для доклада "Как сменить язык программирования и не притащить старые привычки в новый мир".
+
+
+Слайды: https://speakerdeck.com/amogil/kak-smienit-iazyk-proghrammirovaniia-i-nie-pritashchit-staryie-privychki-v-novyi-mir
+
+
+Код на C#: https://github.com/amogil/dump-2015-c-sharp
