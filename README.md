@@ -4,6 +4,4 @@
 
 
 Слайды: https://speakerdeck.com/amogil/kak-smienit-iazyk-proghrammirovaniia-i-nie-pritashchit-staryie-privychki-v-novyi-mir
-
-
 Код на C#: https://github.com/amogil/dump-2015-c-sharp
